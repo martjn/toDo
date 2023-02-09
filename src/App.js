@@ -1,11 +1,10 @@
 import React, {useState} from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-import Expenses from './components/Expenses/Expenses.js';
-import NewExpense from './components/NewExpense/NewExpense';
+import Tasks from './components/Tasks/Tasks.js';
+import NewTask from './components/NewTask/NewTask';
 
-const DUMMY_EXPENSES = [
+const DUMMY_TASKS = [
     {
         id: 'e1',
         date : new Date(2024, 0, 10),
@@ -27,20 +26,18 @@ const DUMMY_EXPENSES = [
 
 ]
 const App = () => {
-  const [expenses, setExpenses] = useState(DUMMY_EXPENSES)
-  const addExpenseHandler = (expense) => {
+  const [tasks, setTasks] = useState(DUMMY_TASKS)
+  const addTaskHandler = (task) => {
       console.log('In App.js')
-      setExpenses((previousExpenses) => {
-          return [expense, ...previousExpenses]
+      setTasks((previousTask) => {
+          return [task, ...previousTask]
       })
   }
 
-  console.log(expenses)
-
   return (
     <div className="App">
-        <NewExpense onAddExpense={addExpenseHandler}></NewExpense>
-        <Expenses expenseData={expenses}></Expenses>
+        <NewTask onAddTask={addTaskHandler}></NewTask>
+        <Tasks taskData={tasks}></Tasks>
     </div>
   );
 }
