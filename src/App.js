@@ -3,6 +3,8 @@ import './App.css';
 
 import Tasks from './components/Tasks/Tasks.js';
 import NewTask from './components/NewTask/NewTask';
+import AddUser from "./components/Users/AddUser";
+import UsersList from "./components/Users/UsersList";
 
 const DUMMY_TASKS = [
     {
@@ -27,6 +29,22 @@ const DUMMY_TASKS = [
 ]
 const App = () => {
   const [tasks, setTasks] = useState(DUMMY_TASKS)
+  const [users, setUsers] = useState([])
+
+    const onAddUserHandler = (username, age) => {
+        setUsers((prevUsers) => {
+            return [
+                ...prevUsers,
+                {
+                    id: Math.random().toString(),
+                    name: username,
+                    age: age
+                }
+            ]
+        })
+    }
+
+
   const addTaskHandler = (task) => {
       console.log('In App.js')
       setTasks((previousTask) => {
@@ -36,7 +54,12 @@ const App = () => {
 
   return (
     <div className="App">
-        <NewTask onAddTask={addTaskHandler}></NewTask>
+        <AddUser onAddUser={onAddUserHandler}/>
+        <UsersList users={users}/>
+        {
+            users.length !== 0 &&
+            <NewTask onAddTask={addTaskHandler}></NewTask>
+        }
         <Tasks taskData={tasks}></Tasks>
     </div>
   );

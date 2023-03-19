@@ -50,6 +50,7 @@ const TaskForm = (props) => {
                     </select>
                 </div>
             </div>
+
             <div className="new-task__actions">
                 <button type="submit">Add Task</button>
             </div>
